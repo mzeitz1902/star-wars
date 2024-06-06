@@ -13,6 +13,12 @@
   @include mat.icon-button-density(-5);
   @include mat.all-component-themes($dark-theme);
   @include globals($dark-theme);
+  font-family: 'StarWars', sans-serif;
+}
+
+@font-face {
+  font-family: 'StarWars';
+  src: url('/assets/Starjedi.ttf') format('truetype');
 }
 
 

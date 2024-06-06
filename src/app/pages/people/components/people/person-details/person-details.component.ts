@@ -37,7 +37,7 @@ import {
     trigger('slideInOut', [
       state('in', style({ transform: 'translateX(0)' })),
       state('out', style({ transform: 'translateX(100%)' })),
-      transition('out => in', animate('200ms ease-in')),
+      transition('out => in', animate('300ms ease-in')),
     ]),
   ],
   template: `
