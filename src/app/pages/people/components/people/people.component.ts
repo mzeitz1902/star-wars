@@ -16,9 +16,12 @@ import { ButtonComponent } from '../../../../shared/components/button.component'
       }
       @defer (when !isLoading()) {
         <div class="flex flex-col w-dvw p-5">
-          <app-header />
+          <app-header (valueChanged)="getPeople($event)" />
           <div class="flex flex-col items-center">
-            <app-content [isPersonSelected]="!!selectedPerson()" />
+            <app-content
+              [isPersonSelected]="!!selectedPerson()"
+              class="w-full"
+            />
             <app-button text="Add Person" (onClick)="onClickAddPerson()" />
           </div>
         </div>
@@ -41,7 +44,11 @@ export class PeopleComponent {
   selectedPerson = this.service.selectedPerson;
 
   constructor() {
-    this.service.getPeople();
+    this.getPeople();
+  }
+
+  getPeople(filter?: string) {
+    this.service.getPeople(1, filter);
   }
 
   onClickAddPerson() {

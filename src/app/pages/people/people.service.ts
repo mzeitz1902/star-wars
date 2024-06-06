@@ -9,8 +9,11 @@ export class PeopleService {
   http = inject(HttpClient);
   apiBaseUrl = 'https://swapi.dev/api/people';
 
-  getPeople$(page = 1) {
-    const url = `${this.apiBaseUrl}?page=${page}`;
+  getPeople$(page = 1, filter?: string) {
+    let url = `${this.apiBaseUrl}?page=${page}`;
+    if (filter) {
+      url += `&search=${filter}`;
+    }
     return this.http.get<PersonPaginatedList>(url);
   }
 }

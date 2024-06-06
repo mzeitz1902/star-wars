@@ -6,7 +6,7 @@ import { Person } from '../person.interface';
 const PeopleActions = createActionGroup({
   source: 'People',
   events: {
-    getPeople: props<{ page: number }>(),
+    getPeople: props<{ page: number; filter?: string }>(),
     getPeopleSuccess: props<{ personPaginatedList: PersonPaginatedList }>(),
     getPeopleFailure: props<{ error: string }>(),
 

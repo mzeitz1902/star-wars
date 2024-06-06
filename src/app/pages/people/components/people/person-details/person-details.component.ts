@@ -52,10 +52,10 @@ import {
           <mat-card-content class="flex flex-col gap-2">
             <mat-list>
               <mat-list-item>
-                Height: {{ selectedPerson()?.height }}
+                Height: {{ selectedPerson()?.height }} cm
               </mat-list-item>
               <mat-list-item>
-                Mass: {{ selectedPerson()?.mass }}
+                Mass: {{ selectedPerson()?.mass }} kg
               </mat-list-item>
               <mat-list-item>
                 Birth Year: {{ selectedPerson()?.birth_year }}

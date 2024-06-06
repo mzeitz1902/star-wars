@@ -27,8 +27,8 @@ export class PeopleViewService {
   isLoading = this.store.selectSignal(selectIsLoading);
   selectedPerson = this.store.selectSignal(selectSelectedPerson);
 
-  getPeople(page = 1) {
-    this.store.dispatch(getPeople({ page }));
+  getPeople(page = 1, filter?: string) {
+    this.store.dispatch(getPeople({ page, filter }));
   }
 
   openPersonDetails(id: string) {

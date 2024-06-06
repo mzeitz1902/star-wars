@@ -17,7 +17,7 @@ export class PeopleEffects {
     this.actions$.pipe(
       ofType(getPeople),
       switchMap((action) =>
-        this.service.getPeople$(action.page).pipe(
+        this.service.getPeople$(action.page, action.filter).pipe(
           map((people) => getPeopleSuccess({ personPaginatedList: people })),
           catchError((error) => {
             console.error(error);
