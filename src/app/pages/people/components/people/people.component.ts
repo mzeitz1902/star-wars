@@ -1,48 +1,26 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { PeopleViewService } from './people-view.service';
-import { MatChip, MatChipSet } from '@angular/material/chips';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
-import { PeopleListComponent } from './people-list/people-list.component';
+import { ContentComponent } from './content/content.component';
+import { HeaderComponent } from './header/header.component';
 import { MatButton } from '@angular/material/button';
-import { RouterOutlet } from '@angular/router';
-import { NgClass } from '@angular/common';
+import { ButtonComponent } from '../../../../shared/components/button.component';
 
 @Component({
   selector: 'app-people',
   standalone: true,
   template: `
-    <div class="w-full flex primary">
+    <div class="max-w-7xl w-max flex primary">
       @if (isLoading()) {
         <mat-spinner />
-      } @else {
-        <!--        outer container-->
+      }
+      @defer (when !isLoading()) {
         <div class="flex flex-col w-dvw p-5">
-          <h1 class="text-2xl w-full">People</h1>
-          <!--          inner component container-->
-          <div class="flex gap-3 p-3">
-            <!--            left side-->
-            <div
-              class="flex flex-col items-center w-1/2"
-              [class.w-full]="!selectedPerson()"
-            >
-              @defer (when !isLoading()) {
-                <app-people-list />
-              }
-            </div>
-            <!--            right side-->
-            @if (selectedPerson()) {
-              <div class="w-1/2">
-                <router-outlet />
-              </div>
-            }
+          <app-header />
+          <div class="flex flex-col items-center">
+            <app-content [isPersonSelected]="!!selectedPerson()" />
+            <app-button text="Add Person" (onClick)="onClickAddPerson()" />
           </div>
-          <button
-            mat-raised-button
-            class="primary"
-            (click)="onClickAddPerson()"
-          >
-            Add Person
-          </button>
         </div>
       }
     </div>
@@ -50,13 +28,11 @@ import { NgClass } from '@angular/common';
   providers: [PeopleViewService],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    MatChipSet,
-    MatChip,
     MatProgressSpinner,
-    PeopleListComponent,
+    ContentComponent,
+    HeaderComponent,
     MatButton,
-    RouterOutlet,
-    NgClass,
+    ButtonComponent,
   ],
 })
 export class PeopleComponent {

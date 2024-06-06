@@ -11,8 +11,6 @@ const PeopleActions = createActionGroup({
     getPeopleFailure: props<{ error: string }>(),
 
     getPerson: props<{ id: string }>(),
-    getPersonSuccess: props<{ person: Person }>(),
-    getPersonFailure: props<{ error: string }>(),
 
     addPerson: props<{ person: Person }>(),
 
@@ -25,8 +23,6 @@ export const getPeopleSuccess = PeopleActions.getPeopleSuccess;
 export const getPeopleFailure = PeopleActions.getPeopleFailure;
 
 export const getPerson = PeopleActions.getPerson;
-export const getPersonSuccess = PeopleActions.getPersonSuccess;
-export const getPersonFailure = PeopleActions.getPersonFailure;
 
 export const addPerson = PeopleActions.addPerson;
 

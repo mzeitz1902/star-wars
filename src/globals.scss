@@ -20,9 +20,12 @@
     color: mat.get-theme-color($theme, primary) !important;
   }
 
-
   .primary-30 {
     color: mat.get-theme-color($theme, primary, 30) !important;
+  }
+
+  .bg-neutral-20 {
+    background-color: mat.get-theme-color($theme, neutral, 20) !important;
   }
 
   .error {

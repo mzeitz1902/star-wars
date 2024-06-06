@@ -45,7 +45,9 @@ export const reducer = createReducer(
   on(addPerson, (state, action) =>
     produce(state, (draftState) => {
       const people = draftState.personPaginatedList!.results;
-      people.push(action.person);
+      const person = { ...action.person };
+      person.id = crypto.randomUUID();
+      people.push(person);
     }),
   ),
   on(deletePerson, (state, action) =>

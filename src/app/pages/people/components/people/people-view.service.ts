@@ -33,6 +33,7 @@ export class PeopleViewService {
 
   openPersonDetails(id: string) {
     this.router.navigate(['/people', id]);
+    // todo call get person after routing
     this.getPerson(id);
   }
 

@@ -5,7 +5,10 @@ import {
 } from '@angular/core';
 import { provideRouterStore } from '@ngrx/router-store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {
+  BrowserAnimationsModule,
+  provideAnimations,
+} from '@angular/platform-browser/animations';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import {
   provideHttpClient,
@@ -23,6 +26,7 @@ export const appConfig: ApplicationConfig = {
     provideStore(),
     provideRouterStore(),
     provideStoreDevtools(),
+    provideAnimations(),
     importProvidersFrom(BrowserAnimationsModule),
     {
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,

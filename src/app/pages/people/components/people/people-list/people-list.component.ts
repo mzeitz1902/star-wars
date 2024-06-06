@@ -26,22 +26,25 @@ import { Person } from '../../../person.interface';
     MatButton,
   ],
   template: `
-    <mat-chip-set class="mat-mdc-chip-set-stacked !w-full">
-      @for (person of persons(); track person.id) {
-        <mat-chip-row (click)="onClickPerson(person.id!)">
-          {{ person.name }}
-          <button matChipRemove (click)="onClickRemove(person)">
-            <mat-icon>cancel</mat-icon>
-          </button>
-        </mat-chip-row>
-      }
-    </mat-chip-set>
+    <div class="flex flex-col items-center justify-center w-full">
+      <mat-chip-set class="mat-mdc-chip-set-stacked !w-full">
+        @for (person of persons(); track person.id) {
+          <mat-chip-row (click)="onClickPerson(person.id!)">
+            {{ person.name }}
+            <button matChipRemove (click)="onClickRemove(person)">
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </mat-chip-row>
+        }
+      </mat-chip-set>
+    </div>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PeopleListComponent {
   service = inject(PeopleViewService);
   persons = this.service.persons;
+  selectedPerson = this.service.selectedPerson;
 
   onClickPerson(id: string) {
     this.service.openPersonDetails(id);
