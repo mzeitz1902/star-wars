@@ -1,0 +1,39 @@
+@use '@angular/material' as mat;
+
+@mixin globals($theme) {
+  @include mat.form-field-density(-4);
+  @include mat.icon-button-density(-5);
+
+  p {
+    @apply text-sm
+  }
+
+  .mdc-notched-outline__notch {
+    border-right: none;
+  }
+
+  .mat-mdc-form-field-subscript-wrapper {
+    display: none
+  }
+
+  .primary {
+    color: mat.get-theme-color($theme, primary) !important;
+  }
+
+
+  .primary-30 {
+    color: mat.get-theme-color($theme, primary, 30) !important;
+  }
+
+  .error {
+    color: mat.get-theme-color($theme, error, 40) !important;
+  }
+
+  .bg-primary-30 {
+    background-color: mat.get-theme-color($theme, primary, 30);
+  }
+
+}
+
+
+

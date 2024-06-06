@@ -1,0 +1,19 @@
+@use '@angular/material' as mat;
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+@import 'm3-theme';
+@import 'globals';
+
+@include mat.core();
+
+:root {
+  @include mat.form-field-density(-4);
+  @include mat.icon-button-density(-5);
+  @include mat.all-component-themes($dark-theme);
+  @include globals($dark-theme);
+}
+
+
+
