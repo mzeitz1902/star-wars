@@ -2,13 +2,14 @@ import { createActionGroup, props } from '@ngrx/store';
 
 import { PersonPaginatedList } from '../person-paginated-list.interface';
 import { Person } from '../person.interface';
+import { HttpErrorResponse } from '@angular/common/http';
 
 const PeopleActions = createActionGroup({
   source: 'People',
   events: {
     getPeople: props<{ page: number; filter?: string }>(),
     getPeopleSuccess: props<{ personPaginatedList: PersonPaginatedList }>(),
-    getPeopleFailure: props<{ error: string }>(),
+    getPeopleFailure: props<{ error: HttpErrorResponse }>(),
 
     addPerson: props<{ person: Person }>(),
 

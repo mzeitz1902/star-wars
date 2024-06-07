@@ -7,6 +7,7 @@ import {
   getPeopleSuccess,
 } from './people.actions';
 import { PeopleApiService } from '../people-api.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable()
 export class PeopleEffects {
@@ -25,7 +26,7 @@ export class PeopleEffects {
         this.service.getPeople$(action.page, action.filter).pipe(
           delay(500),
           map((people) => getPeopleSuccess({ personPaginatedList: people })),
-          catchError((error) => {
+          catchError((error: HttpErrorResponse) => {
             console.error(error);
             return of(getPeopleFailure({ error }));
           }),
