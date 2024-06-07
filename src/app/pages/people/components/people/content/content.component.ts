@@ -45,7 +45,9 @@ import { MatPaginator } from '@angular/material/paginator';
             </div>
           }
         </div>
-        <app-button text="Add Person" (onClick)="onClickAddPerson()" />
+        @defer {
+          <app-button text="Add Person" (onClick)="onClickAddPerson()" />
+        }
       </div>
     }
   `,

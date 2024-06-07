@@ -10,7 +10,7 @@ import { ContentComponent } from './content/content.component';
   template: `
     <div class="max-w-7xl w-max flex primary h-full">
       <div class="flex flex-col w-dvw p-5 h-full justify-center">
-        @defer {
+        @defer (when !isLoading()) {
           <app-header (search)="getPeople($event)" />
         }
         @if (isLoading()) {

@@ -19,7 +19,7 @@ export interface State {
 
 export const initialState: State = {
   personPaginatedList: null,
-  isLoading: false,
+  isLoading: true,
 };
 
 export const reducer = createReducer(

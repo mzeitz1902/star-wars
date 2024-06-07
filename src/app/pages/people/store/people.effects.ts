@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, of, switchMap } from 'rxjs';
+import { catchError, delay, map, of, switchMap } from 'rxjs';
 import {
   getPeople,
   getPeopleFailure,
@@ -18,6 +18,7 @@ export class PeopleEffects {
       ofType(getPeople),
       switchMap((action) =>
         this.service.getPeople$(action.page, action.filter).pipe(
+          delay(500),
           map((people) => getPeopleSuccess({ personPaginatedList: people })),
           catchError((error) => {
             console.error(error);

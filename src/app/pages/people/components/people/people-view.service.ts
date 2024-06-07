@@ -61,8 +61,8 @@ export class PeopleViewService {
   }
 
   onPageChange(event: PageEvent) {
+    this.closePersonDetails();
     let pageIndex = 1;
-    // todo fix going back from the last page
     if (event.previousPageIndex! < event.pageIndex) {
       pageIndex = event.pageIndex + 1;
     }
