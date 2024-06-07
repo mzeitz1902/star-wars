@@ -2,11 +2,11 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  DestroyRef,
   effect,
   inject,
   signal,
 } from '@angular/core';
-import { PeopleViewService } from '../people-view.service';
 import {
   MatCard,
   MatCardContent,
@@ -21,6 +21,9 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
+import { PeopleViewService } from '../people/people-view.service';
+import { timer } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-people-details',
@@ -72,22 +75,21 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PersonDetailsComponent {
-  service = inject(PeopleViewService);
-  selectedPerson = this.service.selectedPerson;
+  private readonly destroyRef = inject(DestroyRef);
+  peopleViewService = inject(PeopleViewService);
+  selectedPerson = this.peopleViewService.selectedPerson;
   name = computed(() => this.selectedPerson()?.name);
-  isIn = signal(true);
 
-  constructor() {
-    effect(
-      () => {
-        if (this.selectedPerson()) {
-          this.isIn.set(false);
-          setTimeout(() => {
-            this.isIn.set(true);
-          }, 100);
-        }
-      },
-      { allowSignalWrites: true },
-    );
-  }
+  isIn = signal(true);
+  animationEffect = effect(
+    () => {
+      if (this.selectedPerson()) {
+        this.isIn.set(false);
+        timer(0)
+          .pipe(takeUntilDestroyed(this.destroyRef))
+          .subscribe(() => this.isIn.set(true));
+      }
+    },
+    { allowSignalWrites: true },
+  );
 }

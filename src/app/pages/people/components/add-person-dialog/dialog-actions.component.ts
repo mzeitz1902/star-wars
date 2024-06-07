@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { MatButton } from '@angular/material/button';
 import { MatDialogActions, MatDialogClose } from '@angular/material/dialog';
-import { Person } from '../person.interface';
+import { Person } from '../../person.interface';
 
 @Component({
   selector: 'app-dialog-actions',

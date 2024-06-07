@@ -5,7 +5,7 @@ import { PersonPaginatedList } from './person-paginated-list.interface';
 @Injectable({
   providedIn: 'root',
 })
-export class PeopleService {
+export class PeopleApiService {
   http = inject(HttpClient);
   apiBaseUrl = 'https://swapi.dev/api/people';
 

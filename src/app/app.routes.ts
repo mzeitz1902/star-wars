@@ -22,7 +22,7 @@ export const routes: Routes = [
         path: ':id',
         loadComponent: () =>
           import(
-            './pages/people/components/people/person-details/person-details.component'
+            './pages/people/components/person-details/person-details.component'
           ).then((c) => c.PersonDetailsComponent),
       },
     ],

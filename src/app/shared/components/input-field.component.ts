@@ -5,10 +5,10 @@ import {
   input,
 } from '@angular/core';
 import { MatError, MatFormField, MatLabel } from '@angular/material/form-field';
-import { ReadableErrorPipe } from '../../pages/people/add-person-dialog/readable-error.pipe';
+import { ReadableErrorPipe } from '../../pages/people/components/add-person-dialog/readable-error.pipe';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInput } from '@angular/material/input';
-import { Field } from '../../pages/people/add-person-dialog/form.service';
+import { Field } from '../../pages/people/components/add-person-dialog/form.service';
 
 @Component({
   selector: 'app-input-field',

@@ -7,10 +7,10 @@ import {
   MatChipRow,
   MatChipSet,
 } from '@angular/material/chips';
-import { PeopleViewService } from '../people-view.service';
 import { MatIcon } from '@angular/material/icon';
 import { MatButton } from '@angular/material/button';
-import { Person } from '../../../person.interface';
+import { PeopleViewService } from '../people/people-view.service';
+import { Person } from '../../person.interface';
 
 @Component({
   selector: 'app-people-list',
@@ -28,7 +28,7 @@ import { Person } from '../../../person.interface';
   template: `
     <div class="flex flex-col items-center justify-center w-full">
       <mat-chip-set class="mat-mdc-chip-set-stacked !w-full">
-        @for (person of persons(); track person.id) {
+        @for (person of people(); track person.id) {
           <mat-chip-row (click)="onClickPerson(person.id!)">
             {{ person.name }}
             <button matChipRemove (click)="onClickRemove(person)">
@@ -42,15 +42,15 @@ import { Person } from '../../../person.interface';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PeopleListComponent {
-  service = inject(PeopleViewService);
-  persons = this.service.persons;
-  selectedPerson = this.service.selectedPerson;
+  viewService = inject(PeopleViewService);
+  people = this.viewService.people;
+  selectedPerson = this.viewService.selectedPerson;
 
   onClickPerson(id: string) {
-    this.service.openPersonDetails(id);
+    this.viewService.openPersonDetails(id);
   }
 
   onClickRemove(person: Person) {
-    this.service.deletePerson(person);
+    this.viewService.deletePerson(person);
   }
 }

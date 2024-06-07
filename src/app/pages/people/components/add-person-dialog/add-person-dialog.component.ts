@@ -7,8 +7,8 @@ import { FormService } from './form.service';
 import { ReadableErrorPipe } from './readable-error.pipe';
 import { DialogActionsComponent } from './dialog-actions.component';
 import { MatOption, MatSelect } from '@angular/material/select';
-import { InputFieldComponent } from '../../../shared/components/input-field.component';
-import { SelectFieldComponent } from '../../../shared/components/select-field.component';
+import { InputFieldComponent } from '../../../../shared/components/input-field.component';
+import { SelectFieldComponent } from '../../../../shared/components/select-field.component';
 
 @Component({
   selector: 'app-add-person-dialog',

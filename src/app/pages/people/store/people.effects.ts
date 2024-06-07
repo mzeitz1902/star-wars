@@ -6,11 +6,11 @@ import {
   getPeopleFailure,
   getPeopleSuccess,
 } from './people.actions';
-import { PeopleService } from '../people.service';
+import { PeopleApiService } from '../people-api.service';
 
 @Injectable()
 export class PeopleEffects {
-  service = inject(PeopleService);
+  service = inject(PeopleApiService);
   actions$ = inject(Actions);
 
   getPeople$ = createEffect(() =>

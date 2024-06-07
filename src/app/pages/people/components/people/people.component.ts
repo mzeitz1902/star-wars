@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { PeopleViewService } from './people-view.service';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
-import { ContentComponent } from './content/content.component';
-import { HeaderComponent } from './header/header.component';
 import { MatButton } from '@angular/material/button';
 import { ButtonComponent } from '../../../../shared/components/button.component';
+import { HeaderComponent } from '../header/header.component';
+import { ContentComponent } from '../content/content.component';
 
 @Component({
   selector: 'app-people',
@@ -17,13 +17,11 @@ import { ButtonComponent } from '../../../../shared/components/button.component'
       @defer (when !isLoading()) {
         <div class="flex flex-col w-dvw p-5">
           <app-header (valueChanged)="getPeople($event)" />
-          <div class="flex flex-col items-center">
-            <app-content
-              [isPersonSelected]="!!selectedPerson()"
-              class="w-full"
-            />
-            <app-button text="Add Person" (onClick)="onClickAddPerson()" />
-          </div>
+          <app-content
+            [isPersonSelected]="!!selectedPerson()"
+            (addPerson)="onAddPerson()"
+            class="w-full"
+          />
         </div>
       }
     </div>
@@ -36,22 +34,24 @@ import { ButtonComponent } from '../../../../shared/components/button.component'
     HeaderComponent,
     MatButton,
     ButtonComponent,
+    HeaderComponent,
+    ContentComponent,
   ],
 })
 export class PeopleComponent {
-  service = inject(PeopleViewService);
-  isLoading = this.service.isLoading;
-  selectedPerson = this.service.selectedPerson;
+  viewService = inject(PeopleViewService);
+  isLoading = this.viewService.isLoading;
+  selectedPerson = this.viewService.selectedPerson;
 
   constructor() {
     this.getPeople();
   }
 
   getPeople(filter?: string) {
-    this.service.getPeople(1, filter);
+    this.viewService.getPeople(1, filter);
   }
 
-  onClickAddPerson() {
-    this.service.addPerson();
+  onAddPerson() {
+    this.viewService.addPerson();
   }
 }

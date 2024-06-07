@@ -8,7 +8,7 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
-import { Gender, Person } from '../person.interface';
+import { Gender, Person } from '../../person.interface';
 
 @Injectable()
 export class FormService {

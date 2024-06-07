@@ -8,7 +8,7 @@ import {
 } from '../../store/people.actions';
 import { MatDialog } from '@angular/material/dialog';
 import { openDialog } from '../../../../shared/dialog-helper';
-import { AddPersonDialogComponent } from '../../add-person-dialog/add-person-dialog.component';
+import { AddPersonDialogComponent } from '../add-person-dialog/add-person-dialog.component';
 import { Person } from '../../person.interface';
 import {
   selectIsLoading,
@@ -23,7 +23,7 @@ export class PeopleViewService {
   private readonly dialog = inject(MatDialog);
   private readonly router = inject(Router);
 
-  persons = this.store.selectSignal(selectPeople);
+  people = this.store.selectSignal(selectPeople);
   isLoading = this.store.selectSignal(selectIsLoading);
   selectedPerson = this.store.selectSignal(selectSelectedPerson);
 
