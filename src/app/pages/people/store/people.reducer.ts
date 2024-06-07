@@ -6,7 +6,6 @@ import {
   deletePerson,
   getPeople,
   getPeopleSuccess,
-  getPerson,
 } from './people.actions';
 import { produce } from 'immer';
 import { getId } from '../../../shared/swapi-helper.functions';
@@ -55,11 +54,6 @@ export const reducer = createReducer(
       let people = draftState.personPaginatedList!.results;
       people = people.filter((person) => person.id !== action.id);
       draftState.personPaginatedList!.results = people;
-    }),
-  ),
-  on(getPerson, (state, action) =>
-    produce(state, (draftState) => {
-      draftState.selectedPersonId = action.id;
     }),
   ),
 );

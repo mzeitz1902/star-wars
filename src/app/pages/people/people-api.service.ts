@@ -2,9 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { PersonPaginatedList } from './person-paginated-list.interface';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class PeopleApiService {
   http = inject(HttpClient);
   apiBaseUrl = 'https://swapi.dev/api/people';

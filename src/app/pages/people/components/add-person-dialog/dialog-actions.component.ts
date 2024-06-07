@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { MatButton } from '@angular/material/button';
 import { MatDialogActions, MatDialogClose } from '@angular/material/dialog';
-import { Person } from '../../person.interface';
 
 @Component({
   selector: 'app-dialog-actions',
@@ -22,6 +21,6 @@ import { Person } from '../../person.interface';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DialogActionsComponent {
-  value = input.required<Partial<Person>>();
+  value = input.required<object>();
   isDisabled = input.required<boolean>();
 }

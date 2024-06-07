@@ -13,12 +13,12 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
-import { ButtonComponent } from '../../../../shared/components/button.component';
+import { RaisedButtonComponent } from '../../../../shared/components/raised-button.component';
 
 @Component({
   selector: 'app-content',
   standalone: true,
-  imports: [PeopleListComponent, RouterOutlet, ButtonComponent],
+  imports: [PeopleListComponent, RouterOutlet, RaisedButtonComponent],
   animations: [
     trigger('widthAnimation', [
       state('true', style({ width: '50%' })),

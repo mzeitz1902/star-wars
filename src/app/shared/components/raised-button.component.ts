@@ -17,7 +17,7 @@ import { MatButton } from '@angular/material/button';
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ButtonComponent {
+export class RaisedButtonComponent {
   text = input.required<string>();
   styleClass = input<'primary' | 'secondary'>('primary');
 

@@ -1,21 +1,17 @@
 import { inject, Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import {
-  addPerson,
-  deletePerson,
-  getPeople,
-  getPerson,
-} from '../../store/people.actions';
+import { addPerson, deletePerson, getPeople } from '../../store/people.actions';
 import { MatDialog } from '@angular/material/dialog';
 import { openDialog } from '../../../../shared/dialog-helper';
-import { AddPersonDialogComponent } from '../add-person-dialog/add-person-dialog.component';
+import { PersonDialogComponent } from '../add-person-dialog/person-dialog.component';
 import { Person } from '../../person.interface';
 import {
   selectIsLoading,
   selectPeople,
-  selectSelectedPerson,
+  selectSelectedPersonByRouteId,
 } from '../../store/people.selectors';
 import { Router } from '@angular/router';
+import { PEOPLE_PATH } from '../../../../app.routes';
 
 @Injectable()
 export class PeopleViewService {
@@ -25,24 +21,22 @@ export class PeopleViewService {
 
   people = this.store.selectSignal(selectPeople);
   isLoading = this.store.selectSignal(selectIsLoading);
-  selectedPerson = this.store.selectSignal(selectSelectedPerson);
+  selectedPerson = this.store.selectSignal(selectSelectedPersonByRouteId);
 
   getPeople(page = 1, filter?: string) {
     this.store.dispatch(getPeople({ page, filter }));
   }
 
   openPersonDetails(id: string) {
-    this.router.navigate(['/people', id]);
-    // todo call get person after routing
-    this.getPerson(id);
+    this.router.navigate([PEOPLE_PATH, id]);
   }
 
-  private getPerson(id: string) {
-    this.store.dispatch(getPerson({ id }));
+  closePersonDetails() {
+    this.router.navigate([PEOPLE_PATH]);
   }
 
   addPerson() {
-    openDialog(this.dialog, AddPersonDialogComponent, {
+    openDialog(this.dialog, PersonDialogComponent, {
       onClosed: (person: Person) => {
         this.store.dispatch(addPerson({ person }));
       },

@@ -3,7 +3,7 @@ import {
   importProvidersFrom,
   provideExperimentalZonelessChangeDetection,
 } from '@angular/core';
-import { provideRouterStore } from '@ngrx/router-store';
+import { provideRouterStore, routerReducer } from '@ngrx/router-store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import {
   BrowserAnimationsModule,
@@ -23,7 +23,7 @@ export const appConfig: ApplicationConfig = {
     provideExperimentalZonelessChangeDetection(),
     provideHttpClient(withInterceptorsFromDi()),
     provideRouter(routes),
-    provideStore(),
+    provideStore({ router: routerReducer }),
     provideRouterStore(),
     provideStoreDevtools(),
     provideAnimations(),

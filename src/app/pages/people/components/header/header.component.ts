@@ -31,11 +31,11 @@ import { debounceTime } from 'rxjs';
 export class HeaderComponent {
   control = new FormControl<string>('');
 
-  valueChanged = output<string>();
+  search = output<string>();
 
   constructor() {
     this.control.valueChanges
       .pipe(takeUntilDestroyed(), debounceTime(600))
-      .subscribe((value) => this.valueChanged.emit(value!));
+      .subscribe((value) => this.search.emit(value!));
   }
 }

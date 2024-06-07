@@ -1,9 +1,9 @@
 import { computed, inject, Injectable, signal } from '@angular/core';
 import {
   AbstractControl,
-  FormBuilder,
   FormControl,
   FormGroup,
+  NonNullableFormBuilder,
   ValidationErrors,
   ValidatorFn,
   Validators,
@@ -11,8 +11,7 @@ import {
 import { Gender, Person } from '../../person.interface';
 
 @Injectable()
-export class FormService {
-  form!: PersonForm;
+export class PersonFormService {
   fields = signal<Field[]>([]);
   inputFields = computed(() =>
     this.fields().filter((field) => field.inputType !== 'select'),
@@ -23,21 +22,17 @@ export class FormService {
 
   genderOptions: Gender[] = ['male', 'female', 'n/a'];
 
-  private readonly formBuilder = inject(FormBuilder);
+  private readonly fb = inject(NonNullableFormBuilder);
+  form: FormGroup<PersonForm> = this.fb.group<PersonForm>({
+    name: this.fb.control('', [Validators.required]),
+    height: this.fb.control('', [Validators.required, Validators.min(1)]),
+    mass: this.fb.control('', [Validators.required, Validators.min(1)]),
+    birth_year: this.fb.control('', [Validators.required, birthYear()]),
+    gender: this.fb.control('', [Validators.required]),
+  });
 
   constructor() {
-    this.buildForm();
     this.buildFields();
-  }
-
-  private buildForm() {
-    this.form = this.formBuilder.group({
-      name: new FormControl('', [Validators.required]),
-      height: new FormControl('', [Validators.required, Validators.min(1)]),
-      mass: new FormControl('', [Validators.required, Validators.min(1)]),
-      birth_year: new FormControl('', [Validators.required, birthYear()]),
-      gender: new FormControl('', [Validators.required]),
-    }) as PersonForm;
   }
 
   private buildFields() {
@@ -68,15 +63,15 @@ export interface Field {
   control: FormControl;
   label: string;
   inputType: string;
+  hint?: string;
 }
 
-type ModelFormGroup<T> = FormGroup<{
-  [K in keyof T]: FormControl<T[K]>;
-}>;
-
-type PersonForm = ModelFormGroup<
-  Pick<Person, 'name' | 'height' | 'mass' | 'birth_year' | 'gender'>
+type PersonPartial = Pick<
+  Person,
+  'name' | 'height' | 'mass' | 'birth_year' | 'gender'
 >;
+
+type PersonForm = Record<keyof PersonPartial, FormControl<string>>;
 
 function birthYear(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {

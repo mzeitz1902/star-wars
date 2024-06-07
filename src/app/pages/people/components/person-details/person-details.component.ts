@@ -24,6 +24,7 @@ import {
 import { PeopleViewService } from '../people/people-view.service';
 import { timer } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { IconButtonComponent } from '../../../../shared/components/icon-button.component';
 
 @Component({
   selector: 'app-people-details',
@@ -35,6 +36,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     MatCardContent,
     MatList,
     MatListItem,
+    IconButtonComponent,
   ],
   animations: [
     trigger('slideInOut', [
@@ -47,10 +49,15 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     <div class="w-full h-full" [@slideInOut]="isIn() ? 'in' : 'out'">
       @if (selectedPerson()) {
         <mat-card class="flex flex-col gap-2 bg-neutral-20 h-full">
-          <mat-card-header>
+          <mat-card-header class="flex items-center justify-between">
             <mat-card-title>
               {{ selectedPerson()?.name }}
             </mat-card-title>
+            <app-icon-button
+              icon="close"
+              tooltip="Close"
+              (closed)="onClosed()"
+            />
           </mat-card-header>
           <mat-card-content class="flex flex-col gap-2">
             <mat-list>
@@ -92,4 +99,8 @@ export class PersonDetailsComponent {
     },
     { allowSignalWrites: true },
   );
+
+  onClosed() {
+    this.peopleViewService.closePersonDetails();
+  }
 }

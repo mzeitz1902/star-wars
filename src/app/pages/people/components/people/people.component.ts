@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { PeopleViewService } from './people-view.service';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { MatButton } from '@angular/material/button';
-import { ButtonComponent } from '../../../../shared/components/button.component';
+import { RaisedButtonComponent } from '../../../../shared/components/raised-button.component';
 import { HeaderComponent } from '../header/header.component';
 import { ContentComponent } from '../content/content.component';
 
@@ -16,7 +16,7 @@ import { ContentComponent } from '../content/content.component';
       }
       @defer (when !isLoading()) {
         <div class="flex flex-col w-dvw p-5">
-          <app-header (valueChanged)="getPeople($event)" />
+          <app-header (search)="getPeople($event)" />
           <app-content
             [isPersonSelected]="!!selectedPerson()"
             (addPerson)="onAddPerson()"
@@ -33,7 +33,7 @@ import { ContentComponent } from '../content/content.component';
     ContentComponent,
     HeaderComponent,
     MatButton,
-    ButtonComponent,
+    RaisedButtonComponent,
     HeaderComponent,
     ContentComponent,
   ],

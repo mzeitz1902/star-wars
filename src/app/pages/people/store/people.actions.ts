@@ -10,8 +10,6 @@ const PeopleActions = createActionGroup({
     getPeopleSuccess: props<{ personPaginatedList: PersonPaginatedList }>(),
     getPeopleFailure: props<{ error: string }>(),
 
-    getPerson: props<{ id: string }>(),
-
     addPerson: props<{ person: Person }>(),
 
     deletePerson: props<{ id: string }>(),
@@ -21,8 +19,6 @@ const PeopleActions = createActionGroup({
 export const getPeople = PeopleActions.getPeople;
 export const getPeopleSuccess = PeopleActions.getPeopleSuccess;
 export const getPeopleFailure = PeopleActions.getPeopleFailure;
-
-export const getPerson = PeopleActions.getPerson;
 
 export const addPerson = PeopleActions.addPerson;
 

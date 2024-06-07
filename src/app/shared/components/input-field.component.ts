@@ -4,11 +4,16 @@ import {
   computed,
   input,
 } from '@angular/core';
-import { MatError, MatFormField, MatLabel } from '@angular/material/form-field';
+import {
+  MatError,
+  MatFormField,
+  MatHint,
+  MatLabel,
+} from '@angular/material/form-field';
 import { ReadableErrorPipe } from '../../pages/people/components/add-person-dialog/readable-error.pipe';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInput } from '@angular/material/input';
-import { Field } from '../../pages/people/components/add-person-dialog/form.service';
+import { Field } from '../../pages/people/components/add-person-dialog/person-form.service';
 
 @Component({
   selector: 'app-input-field',
@@ -19,6 +24,7 @@ import { Field } from '../../pages/people/components/add-person-dialog/form.serv
     ReadableErrorPipe,
     MatLabel,
     MatInput,
+    MatHint,
     ReactiveFormsModule,
   ],
   template: `
@@ -30,6 +36,10 @@ import { Field } from '../../pages/people/components/add-person-dialog/form.serv
         [type]="field().inputType"
       />
     </mat-form-field>
+    @if (field().hint) {
+      <mat-hint>{{ field().hint }}</mat-hint>
+    }
+
     @if (field().control.errors && field().control.touched) {
       <mat-error>{{ error() | readableError }}</mat-error>
     }

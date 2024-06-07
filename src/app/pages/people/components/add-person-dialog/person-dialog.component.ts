@@ -3,7 +3,7 @@ import { MatDialogContent, MatDialogTitle } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatError, MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
-import { FormService } from './form.service';
+import { PersonFormService } from './person-form.service';
 import { ReadableErrorPipe } from './readable-error.pipe';
 import { DialogActionsComponent } from './dialog-actions.component';
 import { MatOption, MatSelect } from '@angular/material/select';
@@ -28,7 +28,7 @@ import { SelectFieldComponent } from '../../../../shared/components/select-field
     InputFieldComponent,
     SelectFieldComponent,
   ],
-  providers: [FormService],
+  providers: [PersonFormService],
   template: `
     <div class="flex flex-col gap-3">
       <h1 matDialogTitle class="primary">Add Person</h1>
@@ -49,10 +49,10 @@ import { SelectFieldComponent } from '../../../../shared/components/select-field
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AddPersonDialogComponent {
-  service = inject(FormService);
-  form = this.service.form;
-  inputFields = this.service.inputFields;
-  genderField = this.service.genderField;
-  genderOptions = this.service.genderOptions;
+export class PersonDialogComponent {
+  formService = inject(PersonFormService);
+  form = this.formService.form;
+  inputFields = this.formService.inputFields;
+  genderField = this.formService.genderField;
+  genderOptions = this.formService.genderOptions;
 }
