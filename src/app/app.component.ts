@@ -1,5 +1,4 @@
-import { Component, inject } from '@angular/core';
-import { PeopleService } from './pages/people/people.service';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
@@ -14,10 +13,4 @@ import { RouterOutlet } from '@angular/router';
     </div>
   `,
 })
-export class AppComponent {
-  service = inject(PeopleService);
-
-  constructor() {
-    this.service.getPeople$();
-  }
-}
+export class AppComponent {}
