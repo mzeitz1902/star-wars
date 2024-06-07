@@ -91,6 +91,12 @@ export class PersonDetailsComponent {
   name = computed(() => this.selectedPerson()?.name);
 
   slideState = signal<'in' | 'out'>('in');
+  /**
+   * Effect that triggers an animation when a person is selected.
+   * When a person is selected, it sets the `slideState` signal to 'out', then sets it back to 'in' after a minimal delay.
+   * This causes the `slideInOut` animation to trigger, sliding the person details in from the right.
+   * The timer is needed to actually trigger the animation.
+   */
   animationEffect = effect(
     () => {
       if (this.selectedPerson()) {

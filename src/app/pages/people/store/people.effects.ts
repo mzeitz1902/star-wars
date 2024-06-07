@@ -13,6 +13,11 @@ export class PeopleEffects {
   service = inject(PeopleApiService);
   actions$ = inject(Actions);
 
+  /**
+   * Effect that listens for `getPeople` action.
+   * Waits for 500 milliseconds before dispatching the `getPeopleSuccess` action with the returned people to improve
+   * user experience by showing the spinner in {@link PeopleComponent} for at least that time, which removes flickering.
+   */
   getPeople$ = createEffect(() =>
     this.actions$.pipe(
       ofType(getPeople),

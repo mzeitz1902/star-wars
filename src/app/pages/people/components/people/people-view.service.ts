@@ -60,6 +60,16 @@ export class PeopleViewService {
     this.store.dispatch(deletePerson({ id: person.id! }));
   }
 
+  /**
+   * Handles the page change event from the paginator.
+   *
+   * This method is triggered when the user interacts with the paginator. It first closes any open person details.
+   * Then, it calculates the new page index based on the previous and current page indices from the event.
+   * If the user navigated to the next page, it increments the page index.
+   * If the user navigated to the previous page, it decrements the page index.
+   * Finally, it fetches the people for the new page.
+   *
+   */
   onPageChange(event: PageEvent) {
     this.closePersonDetails();
     let pageIndex = 1;

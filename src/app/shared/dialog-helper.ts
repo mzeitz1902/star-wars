@@ -3,19 +3,8 @@ import {ComponentType} from '@angular/cdk/overlay';
 import {take} from 'rxjs';
 
 /**
- * Opens a dialog and calls the onClosed callback with the output of the dialog when the dialog .
- * @param dialog
- * @param component
- * @param options
- *
- * @example
- *
- * openDialog(this.dialog, IceCreamDialogComponent, {
- *     input: 'chocolate',
- *     onClosed: (result: IceCream) =>{...}
- *     onCanceled: () => {...}
- *  });
- *
+ * Opens a dialog and calls the onClosed callback with the output of the dialog.
+ * If there is no output, the onCanceled callback is called instead.
  */
 export function openDialog<OUTPUT>(
   dialog: MatDialog,
