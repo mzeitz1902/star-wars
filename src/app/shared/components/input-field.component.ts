@@ -28,18 +28,18 @@ import { Field } from '../../pages/people/components/add-person-dialog/person-fo
     ReactiveFormsModule,
   ],
   template: `
-    <mat-form-field class="w-full">
+    <mat-form-field class="w-full" [class.mb-2]="!!field().hint">
       <mat-label>{{ field().label }}</mat-label>
       <input
         matInput
         [formControl]="field().control"
-        [type]="field().inputType"
+        [type]="field().fieldType"
       />
     </mat-form-field>
+
     @if (field().hint) {
       <mat-hint>{{ field().hint }}</mat-hint>
     }
-
     @if (field().control.errors && field().control.touched) {
       <mat-error>{{ error() | readableError }}</mat-error>
     }

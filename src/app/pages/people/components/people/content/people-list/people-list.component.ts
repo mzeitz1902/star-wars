@@ -9,8 +9,9 @@ import {
 } from '@angular/material/chips';
 import { MatIcon } from '@angular/material/icon';
 import { MatButton } from '@angular/material/button';
-import { PeopleViewService } from '../people/people-view.service';
-import { Person } from '../../person.interface';
+import { PeopleViewService } from '../../people-view.service';
+import { Person } from '../../../../person.interface';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-people-list',
@@ -24,10 +25,11 @@ import { Person } from '../../person.interface';
     MatChipRow,
     MatChipRemove,
     MatButton,
+    MatPaginator,
   ],
   template: `
-    <div class="flex flex-col items-center justify-center w-full">
-      <mat-chip-set class="mat-mdc-chip-set-stacked !w-full">
+    <div class="flex flex-col items-start w-full h-full">
+      <mat-chip-set class="mat-mdc-chip-set-stacked !w-full !h-full">
         @for (person of people(); track person.id) {
           <mat-chip-row (click)="onClickPerson(person.id!)">
             {{ person.name }}
@@ -37,6 +39,12 @@ import { Person } from '../../person.interface';
           </mat-chip-row>
         }
       </mat-chip-set>
+      <mat-paginator
+        [length]="peopleCount()"
+        [pageSize]="pageSize()"
+        [pageIndex]="currentPage()"
+        (page)="onPageChange($event)"
+      />
     </div>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -44,7 +52,9 @@ import { Person } from '../../person.interface';
 export class PeopleListComponent {
   viewService = inject(PeopleViewService);
   people = this.viewService.people;
-  selectedPerson = this.viewService.selectedPerson;
+  peopleCount = this.viewService.count;
+  currentPage = this.viewService.currentPage;
+  pageSize = this.viewService.pageSize;
 
   onClickPerson(id: string) {
     this.viewService.openPersonDetails(id);
@@ -52,5 +62,9 @@ export class PeopleListComponent {
 
   onClickRemove(person: Person) {
     this.viewService.deletePerson(person);
+  }
+
+  onPageChange(event: PageEvent) {
+    this.viewService.onPageChange(event);
   }
 }

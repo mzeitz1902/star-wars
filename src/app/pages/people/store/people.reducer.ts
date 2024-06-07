@@ -15,13 +15,11 @@ export const peopleFeatureKey = 'people';
 export interface State {
   personPaginatedList: PersonPaginatedList | null;
   isLoading: boolean;
-  selectedPersonId: string | null;
 }
 
 export const initialState: State = {
   personPaginatedList: null,
   isLoading: false,
-  selectedPersonId: null,
 };
 
 export const reducer = createReducer(
@@ -29,6 +27,7 @@ export const reducer = createReducer(
   on(getPeople, (state) =>
     produce(state, (draftState) => {
       draftState.isLoading = true;
+      draftState.personPaginatedList = null;
     }),
   ),
   on(getPeopleSuccess, (state, action) =>

@@ -1,42 +1,39 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { PeopleViewService } from './people-view.service';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
-import { MatButton } from '@angular/material/button';
-import { RaisedButtonComponent } from '../../../../shared/components/raised-button.component';
-import { HeaderComponent } from '../header/header.component';
-import { ContentComponent } from '../content/content.component';
+import { HeaderComponent } from './header/header.component';
+import { ContentComponent } from './content/content.component';
 
 @Component({
   selector: 'app-people',
   standalone: true,
   template: `
-    <div class="max-w-7xl w-max flex primary">
-      @if (isLoading()) {
-        <mat-spinner />
-      }
-      @defer (when !isLoading()) {
-        <div class="flex flex-col w-dvw p-5">
+    <div class="max-w-7xl w-max flex primary h-full">
+      <div class="flex flex-col w-dvw p-5 h-full justify-center">
+        @defer {
           <app-header (search)="getPeople($event)" />
-          <app-content
-            [isPersonSelected]="!!selectedPerson()"
-            (addPerson)="onAddPerson()"
-            class="w-full"
-          />
+        }
+        @if (isLoading()) {
+          <div class="self-center mt-40">
+            <mat-spinner />
+          </div>
+        }
+        <div class="flex h-full w-full">
+          @defer (when !isLoading()) {
+            <app-content
+              [isPersonSelected]="!!selectedPerson()"
+              [isLoading]="isLoading()"
+              (addPerson)="onAddPerson()"
+              class="w-full"
+            />
+          }
         </div>
-      }
+      </div>
     </div>
   `,
   providers: [PeopleViewService],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    MatProgressSpinner,
-    ContentComponent,
-    HeaderComponent,
-    MatButton,
-    RaisedButtonComponent,
-    HeaderComponent,
-    ContentComponent,
-  ],
+  imports: [HeaderComponent, MatProgressSpinner, ContentComponent],
 })
 export class PeopleComponent {
   viewService = inject(PeopleViewService);

@@ -46,7 +46,10 @@ import { IconButtonComponent } from '../../../../shared/components/icon-button.c
     ]),
   ],
   template: `
-    <div class="w-full h-full" [@slideInOut]="isIn() ? 'in' : 'out'">
+    <div
+      class="w-full h-full"
+      [@slideInOut]="slideState() === 'in' ? 'in' : 'out'"
+    >
       @if (selectedPerson()) {
         <mat-card class="flex flex-col gap-2 bg-neutral-20 h-full">
           <mat-card-header class="flex items-center justify-between">
@@ -87,14 +90,14 @@ export class PersonDetailsComponent {
   selectedPerson = this.peopleViewService.selectedPerson;
   name = computed(() => this.selectedPerson()?.name);
 
-  isIn = signal(true);
+  slideState = signal<'in' | 'out'>('in');
   animationEffect = effect(
     () => {
       if (this.selectedPerson()) {
-        this.isIn.set(false);
+        this.slideState.set('out');
         timer(0)
           .pipe(takeUntilDestroyed(this.destroyRef))
-          .subscribe(() => this.isIn.set(true));
+          .subscribe(() => this.slideState.set('in'));
       }
     },
     { allowSignalWrites: true },
