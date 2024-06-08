@@ -1,6 +1,5 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
-import { expect } from '@jest/globals';
 
 import { PeopleEffects } from './people.effects';
 import { Actions } from '@ngrx/effects';

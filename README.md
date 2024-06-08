@@ -45,6 +45,8 @@ cd your-project-name
 npm install
 ```
 
+It might be necessary to use ``npm i --legacy-peer-deps`` because of version discrepancies with the NgRx packages.
+
 4. Start the development server:
 
 ```bash

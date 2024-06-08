@@ -6,11 +6,13 @@ describe('FormServiceService', () => {
   let service: PersonFormService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({ providers: [PersonFormService] });
     service = TestBed.inject(PersonFormService);
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  it('should have correct initial fields', () => {});
 });

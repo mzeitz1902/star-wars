@@ -5,7 +5,6 @@ import {
   getPeople,
   getPeopleSuccess,
 } from './people.actions';
-import { expect } from '@jest/globals';
 import { Person } from '../person.interface';
 import { PersonPaginatedList } from '../person-paginated-list.interface';
 

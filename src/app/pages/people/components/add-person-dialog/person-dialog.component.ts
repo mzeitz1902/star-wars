@@ -34,8 +34,8 @@ import { SelectFieldComponent } from '../../../../shared/components/select-field
       <h1 matDialogTitle class="primary">Add Person</h1>
       <mat-dialog-content class="!pt-2">
         <form [formGroup]="form" class="flex flex-col gap-5">
-          @for (control of inputFields(); track control) {
-            <app-input-field [field]="control" />
+          @for (field of inputFields(); track field) {
+            <app-input-field [field]="field" />
           }
           <app-select-field
             [control]="genderField()!.control"

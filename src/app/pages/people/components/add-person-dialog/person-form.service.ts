@@ -19,7 +19,6 @@ export class PersonFormService {
 
   private fieldMap = signal(this.buildFieldMap());
   fields = computed(() => Array.from(this.fieldMap().values()));
-  controlObj = computed(() => this.buildControlObj());
   inputFields = computed(() =>
     this.fields().filter((field) => field.fieldType !== 'select'),
   );
@@ -29,7 +28,7 @@ export class PersonFormService {
 
   genderOptions: Gender[] = ['male', 'female', 'n/a'];
 
-  form: FormGroup<PersonForm> = this.fb.group(this.controlObj());
+  form: FormGroup<PersonForm> = this.buildForm();
 
   /**
    * Builds a map of fields for the form.
@@ -77,6 +76,11 @@ export class PersonFormService {
     return [key, field];
   }
 
+  buildForm() {
+    const controlObj = this.buildControlObj(this.fields());
+    return this.fb.group(controlObj);
+  }
+
   /**
    * Builds an object of form controls that will be used by the form builder to build the form.
    * Each form control is represented as a key-value pair in the object, where the key is a property of the `PersonPartial` type and the value is a `FormControl<string>`.
@@ -84,11 +88,10 @@ export class PersonFormService {
    *
    * @returns An object of form controls for the form.
    */
-  private buildControlObj() {
-    const controlObj: PersonForm = {} as PersonForm;
-    const controls = this.fields().map((field) => field.control);
-    this.fields().forEach((field, i) => {
-      controlObj[field.key] = controls[i];
+  private buildControlObj(fields: Field[]) {
+    const controlObj = {} as PersonForm;
+    fields.forEach((field, i) => {
+      controlObj[field.key] = field.control;
     });
     return controlObj;
   }
@@ -113,7 +116,7 @@ type PersonPartial = Pick<
 
 type PersonForm = Record<keyof PersonPartial, FormControl<string>>;
 
-function birthYear(): ValidatorFn {
+export function birthYear(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const value = control.value;
     const starWarsYearPattern = /^(\d+(\.\d+)?)(BBY|ABY)$/i;

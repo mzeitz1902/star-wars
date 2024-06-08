@@ -2,7 +2,6 @@ import { TestBed } from '@angular/core/testing';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { expect } from '@jest/globals';
 
 import { PeopleViewService } from './people-view.service';
 import { addPerson, deletePerson, getPeople } from '../../store/people.actions';
