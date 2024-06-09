@@ -32,11 +32,13 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
       <mat-chip-set class="mat-mdc-chip-set-stacked !w-full !h-full">
         @for (person of people(); track person.id) {
           <mat-chip-row (click)="onClickPerson(person.id!)">
-            {{ person.name }}
+            {{ person.name }}s
             <button matChipRemove (click)="onClickRemove(person)">
               <mat-icon>cancel</mat-icon>
             </button>
           </mat-chip-row>
+        } @empty {
+          No People found!
         }
       </mat-chip-set>
       <mat-paginator

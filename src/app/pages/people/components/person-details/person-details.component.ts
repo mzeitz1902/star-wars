@@ -59,7 +59,7 @@ import { IconButtonComponent } from '../../../../shared/components/icon-button.c
             <app-icon-button
               icon="close"
               tooltip="Close"
-              (closed)="onClosed()"
+              (clicked)="onClosed()"
             />
           </mat-card-header>
           <mat-card-content class="flex flex-col gap-2">

@@ -17,7 +17,7 @@ import { MatTooltip } from '@angular/material/tooltip';
       mat-icon-button
       [matTooltip]="tooltip()"
       class="!flex !items-center"
-      (click)="closed.emit()"
+      (click)="clicked.emit()"
     >
       <mat-icon>{{ icon() }}</mat-icon>
     </button>
@@ -28,5 +28,5 @@ export class IconButtonComponent {
   icon = input.required<string>();
   tooltip = input.required<string>();
 
-  closed = output();
+  clicked = output();
 }
