@@ -20,12 +20,7 @@ import { ContentComponent } from './content/content.component';
         }
         <div class="flex h-full w-full">
           @defer (when !isLoading()) {
-            <app-content
-              [isPersonSelected]="!!selectedPerson()"
-              [isLoading]="isLoading()"
-              (addPerson)="onAddPerson()"
-              class="w-full"
-            />
+            <app-content class="w-full" />
           }
         </div>
       </div>
@@ -38,7 +33,6 @@ import { ContentComponent } from './content/content.component';
 export class PeopleComponent {
   viewService = inject(PeopleViewService);
   isLoading = this.viewService.isLoading;
-  selectedPerson = this.viewService.selectedPerson;
 
   constructor() {
     this.getPeople();
@@ -46,9 +40,5 @@ export class PeopleComponent {
 
   getPeople(filter?: string) {
     this.viewService.getPeople(1, filter);
-  }
-
-  onAddPerson() {
-    this.viewService.addPerson();
   }
 }

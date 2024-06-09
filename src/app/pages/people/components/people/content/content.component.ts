@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  input,
-  output,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { PeopleListComponent } from './people-list/people-list.component';
 import { RouterOutlet } from '@angular/router';
 import {
@@ -15,6 +10,7 @@ import {
 } from '@angular/animations';
 import { RaisedButtonComponent } from '../../../../../shared/components/raised-button.component';
 import { MatPaginator } from '@angular/material/paginator';
+import { PeopleViewService } from '../people-view.service';
 
 @Component({
   selector: 'app-content',
@@ -37,9 +33,9 @@ import { MatPaginator } from '@angular/material/paginator';
       <div class="flex flex-col items-center w-full">
         <div class="flex gap-3 p-3 w-full h-full">
           @defer {
-            <app-people-list [@widthAnimation]="isPersonSelected()" />
+            <app-people-list [@widthAnimation]="!!selectedPerson()" />
           }
-          @if (isPersonSelected()) {
+          @if (selectedPerson()) {
             <div class="w-1/2">
               <router-outlet />
             </div>
@@ -54,12 +50,11 @@ import { MatPaginator } from '@angular/material/paginator';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContentComponent {
-  isPersonSelected = input.required<boolean>();
-  isLoading = input.required<boolean>();
-
-  addPerson = output();
+  viewService = inject(PeopleViewService);
+  selectedPerson = this.viewService.selectedPerson;
+  isLoading = this.viewService.isLoading;
 
   onClickAddPerson() {
-    this.addPerson.emit();
+    this.viewService.addPerson();
   }
 }

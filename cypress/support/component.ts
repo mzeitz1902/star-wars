@@ -14,12 +14,14 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
-import './commands'
+import './commands';
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
-
-import { mount } from 'cypress/angular'
+import {mount, MountConfig, MountResponse} from 'cypress/angular';
+import {DeferBlockFixture, DeferBlockState} from '@angular/core/testing';
+import {cy} from 'local-cypress';
+import {Type} from '@angular/core';
 
 // Augment the Cypress namespace to include type definitions for
 // your custom command.
@@ -28,12 +30,56 @@ import { mount } from 'cypress/angular'
 declare global {
   namespace Cypress {
     interface Chainable {
-      mount: typeof mount
+      mount: typeof mount;
+
+      defer(): Cypress.Chainable<DeferBlockFixture[]>;
+
+      render(state: DeferBlockState): Cypress.Chainable<void>;
+
+      renderAll(state: DeferBlockState): Cypress.Chainable<DeferBlockFixture[]>;
+
+      mountWrapComponent<COMPONENT>(
+        componentType: Type<COMPONENT>,
+        config: MountConfig<COMPONENT>,
+      ): Chainable<COMPONENT>;
     }
   }
 }
 
-Cypress.Commands.add('mount', mount)
+type MountParams = Parameters<typeof mount>;
 
-// Example use:
-// cy.mount(MyComponent)
+Cypress.Commands.add('mount', mount);
+Cypress.Commands.add(
+  'defer',
+  { prevSubject: true },
+  (subject: MountResponse<MountParams>) => {
+    const { fixture } = subject;
+    return cy.wrap(fixture.getDeferBlocks());
+  },
+);
+
+Cypress.Commands.add(
+  'render',
+  { prevSubject: true },
+  (subject: DeferBlockFixture, state: DeferBlockState) => {
+    cy.wrap(subject.render(state));
+  },
+);
+
+Cypress.Commands.add(
+  'renderAll',
+  { prevSubject: true },
+  (subject: DeferBlockFixture[], state: DeferBlockState) => {
+    subject.forEach((deferBlock: DeferBlockFixture) => {
+      deferBlock.render(state);
+    });
+
+    cy.wrap(subject);
+  },
+);
+
+Cypress.Commands.add('mountWrapComponent', (componentType, config) => {
+  return cy.mount(componentType, config).then(({ component }) => {
+    return cy.wrap(component).as('component');
+  });
+});
