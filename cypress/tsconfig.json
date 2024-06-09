@@ -1,7 +1,5 @@
 {
   "compilerOptions": {
-    "target": "ES2022",
-    "module": "ES2022",
     "lib": [
       "ES2022",
       "dom"
@@ -10,10 +8,13 @@
       "cypress",
       "node"
     ],
-    "moduleResolution": "nodenext"
+    "esModuleInterop": true,
+    "moduleResolution": "Node",
+    "sourceMap": false
   },
   "include": [
-    "**/*.ts",
-    "cypress"
+    "src",
+    "cypress",
+    "./support/index.d.ts"
   ]
 }

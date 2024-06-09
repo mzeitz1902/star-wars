@@ -4,9 +4,8 @@
   "compilerOptions": {
     "types": [
       "node",
-      "cypress",
-      "cypress-real-events",
-      "jest"
+      "jest",
+      "cypress"
     ],
     "outDir": "./dist/out-tsc",
     "strict": true,
@@ -29,11 +28,8 @@
       "dom"
     ]
   },
-  "include": [
-    "cypress"
-  ],
   "exclude": [
-    "cypress.config.ts",
+    "./cypress.config.ts",
     "node_modules"
   ],
   "angularCompilerOptions": {

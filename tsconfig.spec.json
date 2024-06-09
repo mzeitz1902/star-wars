@@ -13,6 +13,10 @@
   ],
   "include": [
     "**/*.spec.ts",
-    "**/*.d.ts"
-  ]
+  ],
+  "exclude": [
+    "node_modules",
+    "cypress",
+    "cypress.config.ts"
+  ],
 }
