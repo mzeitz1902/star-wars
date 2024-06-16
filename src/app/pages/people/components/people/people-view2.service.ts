@@ -1,19 +1,21 @@
 import { inject, Injectable } from '@angular/core';
 import { PeopleApiService } from '../../people-api.service';
-import { BehaviorSubject, map } from 'rxjs';
+import { BehaviorSubject, map, Observable, tap } from 'rxjs';
+import { Person } from '../../person.interface';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class PeopleView2Service {
   private readonly apiService = inject(PeopleApiService);
+  private _isLoading$ = new BehaviorSubject(false);
 
-  private peopleSubject = new BehaviorSubject([]);
-  people$ = this.peopleSubject.asObservable();
+  people$ = new Observable<Person[]>();
+  isLoading$ = this._isLoading$.asObservable();
 
   getPeople(page: number, filter?: string) {
-    this.apiService
-      .getPeople$(page, filter)
-      .pipe(map((response) => response.results));
+    this._isLoading$.next(true);
+    this.people$ = this.apiService.getPeople$(page, filter).pipe(
+      map((response) => response.results),
+      tap(() => this._isLoading$.next(false)),
+    );
   }
 }

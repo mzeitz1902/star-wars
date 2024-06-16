@@ -11,6 +11,7 @@ import {
 import { RaisedButtonComponent } from '../../../../../shared/components/raised-button.component';
 import { MatPaginator } from '@angular/material/paginator';
 import { PeopleViewService } from '../people-view.service';
+import { PeopleView2Service } from '../people-view2.service';
 
 @Component({
   selector: 'app-content',
@@ -51,8 +52,10 @@ import { PeopleViewService } from '../people-view.service';
 })
 export class ContentComponent {
   viewService = inject(PeopleViewService);
+  view2Service = inject(PeopleView2Service);
   selectedPerson = this.viewService.selectedPerson;
   isLoading = this.viewService.isLoading;
+  isLoading2$ = this.view2Service.isLoading$;
 
   onClickAddPerson() {
     this.viewService.addPerson();
