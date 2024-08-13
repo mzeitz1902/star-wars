@@ -11,7 +11,6 @@ import {
 import { RaisedButtonComponent } from '../../../../../shared/components/raised-button.component';
 import { MatPaginator } from '@angular/material/paginator';
 import { PeopleViewService } from '../people-view.service';
-import { PeopleView2Service } from '../people-view2.service';
 
 @Component({
   selector: 'app-content',
