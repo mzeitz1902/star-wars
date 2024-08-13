@@ -52,10 +52,8 @@ import { PeopleView2Service } from '../people-view2.service';
 })
 export class ContentComponent {
   viewService = inject(PeopleViewService);
-  view2Service = inject(PeopleView2Service);
   selectedPerson = this.viewService.selectedPerson;
   isLoading = this.viewService.isLoading;
-  isLoading2$ = this.view2Service.isLoading$;
 
   onClickAddPerson() {
     this.viewService.addPerson();
