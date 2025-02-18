@@ -3,7 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { cy } from 'local-cypress';
 import { ContentComponent } from './content.component';
 import { MockProvider } from 'ng-mocks';
-import { PeopleViewService } from '../people-view.service';
+import { PeopleFacade } from '../people.facade';
 import { signal } from '@angular/core';
 import { Person } from '../../../person.interface';
 import { DeferBlockState } from '@angular/core/testing';
@@ -32,7 +32,7 @@ describe(`ContentComponent`, () => {
     config = {
       imports: [BrowserAnimationsModule],
       providers: [
-        MockProvider(PeopleViewService, {
+        MockProvider(PeopleFacade, {
           isLoading: signal(isLoading),
           selectedPerson: signal(selectedPerson),
           people: signal(fakePeople),

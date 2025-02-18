@@ -23,7 +23,7 @@ import {PageEvent} from '@angular/material/paginator';
  * Also provides data from the store to its consumers via signals.
  */
 @Injectable()
-export class PeopleViewService {
+export class PeopleFacade {
   private readonly store: Store = inject(Store);
   private readonly dialog = inject(MatDialog);
   private readonly router = inject(Router);

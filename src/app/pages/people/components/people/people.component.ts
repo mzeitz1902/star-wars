@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { PeopleViewService } from './people-view.service';
+import { PeopleFacade } from './people.facade';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { HeaderComponent } from './header/header.component';
 import { ContentComponent } from './content/content.component';
@@ -26,12 +26,12 @@ import { AsyncPipe } from '@angular/common';
       </div>
     </div>
   `,
-    providers: [PeopleViewService],
+    providers: [PeopleFacade],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [HeaderComponent, MatProgressSpinner, ContentComponent, AsyncPipe]
 })
 export class PeopleComponent {
-  viewService = inject(PeopleViewService);
+  viewService = inject(PeopleFacade);
   isLoading = this.viewService.isLoading;
 
   constructor() {

@@ -9,7 +9,7 @@ import {
 } from '@angular/material/chips';
 import { MatIcon } from '@angular/material/icon';
 import { MatButton } from '@angular/material/button';
-import { PeopleViewService } from '../../people-view.service';
+import { PeopleFacade } from '../../people.facade';
 import { Person } from '../../../../person.interface';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 
@@ -51,7 +51,7 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PeopleListComponent {
-  viewService = inject(PeopleViewService);
+  viewService = inject(PeopleFacade);
   people = this.viewService.people;
   peopleCount = this.viewService.count;
   currentPage = this.viewService.currentPage;

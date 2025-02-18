@@ -21,7 +21,7 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
-import { PeopleViewService } from '../people/people-view.service';
+import { PeopleFacade } from '../people/people.facade';
 import { timer } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { IconButtonComponent } from '../../../../shared/components/icon-button.component';
@@ -85,7 +85,7 @@ import { IconButtonComponent } from '../../../../shared/components/icon-button.c
 })
 export class PersonDetailsComponent {
   private readonly destroyRef = inject(DestroyRef);
-  peopleViewService = inject(PeopleViewService);
+  peopleViewService = inject(PeopleFacade);
   selectedPerson = this.peopleViewService.selectedPerson;
   name = computed(() => this.selectedPerson()?.name);
 

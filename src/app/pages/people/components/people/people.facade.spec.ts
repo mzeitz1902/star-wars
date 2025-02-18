@@ -3,7 +3,7 @@ import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
-import { PeopleViewService } from './people-view.service';
+import { PeopleFacade } from './people.facade';
 import { addPerson, deletePerson, getPeople } from '../../store/people.actions';
 import { Person } from '../../person.interface';
 import { of } from 'rxjs';
@@ -12,7 +12,7 @@ import { PEOPLE_PATH } from '../../../../app.routes';
 import { PageEvent } from '@angular/material/paginator';
 
 describe('PeopleViewService', () => {
-  let service: PeopleViewService;
+  let service: PeopleFacade;
   let store: MockStore;
   let dialog: MatDialog;
   let router: Router;
@@ -20,7 +20,7 @@ describe('PeopleViewService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        PeopleViewService,
+        PeopleFacade,
         provideMockStore(),
         {
           provide: MatDialog,
@@ -32,7 +32,7 @@ describe('PeopleViewService', () => {
       ],
     });
 
-    service = TestBed.inject(PeopleViewService);
+    service = TestBed.inject(PeopleFacade);
     store = TestBed.inject(MockStore);
     dialog = TestBed.inject(MatDialog);
     router = TestBed.inject(Router);

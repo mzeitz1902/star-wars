@@ -10,7 +10,7 @@ import {
 } from '@angular/animations';
 import { RaisedButtonComponent } from '../../../../../shared/components/raised-button.component';
 import { MatPaginator } from '@angular/material/paginator';
-import { PeopleViewService } from '../people-view.service';
+import { PeopleFacade } from '../people.facade';
 
 @Component({
     selector: 'app-content',
@@ -49,7 +49,7 @@ import { PeopleViewService } from '../people-view.service';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ContentComponent {
-  viewService = inject(PeopleViewService);
+  viewService = inject(PeopleFacade);
   selectedPerson = this.viewService.selectedPerson;
   isLoading = this.viewService.isLoading;
 
