@@ -6,9 +6,8 @@ import { ContentComponent } from './content/content.component';
 import { AsyncPipe } from '@angular/common';
 
 @Component({
-  selector: 'app-people',
-  standalone: true,
-  template: `
+    selector: 'app-people',
+    template: `
     <div class="max-w-7xl w-max flex primary h-full">
       <div class="flex flex-col w-dvw p-5 h-full justify-center">
         @defer (when !isLoading()) {
@@ -27,9 +26,9 @@ import { AsyncPipe } from '@angular/common';
       </div>
     </div>
   `,
-  providers: [PeopleViewService],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [HeaderComponent, MatProgressSpinner, ContentComponent, AsyncPipe],
+    providers: [PeopleViewService],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [HeaderComponent, MatProgressSpinner, ContentComponent, AsyncPipe]
 })
 export class PeopleComponent {
   viewService = inject(PeopleViewService);

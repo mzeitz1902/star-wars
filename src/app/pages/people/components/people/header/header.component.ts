@@ -12,18 +12,17 @@ import { debounceTime } from 'rxjs';
 import { IconButtonComponent } from '../../../../../shared/components/icon-button.component';
 
 @Component({
-  selector: 'app-header',
-  standalone: true,
-  imports: [
-    MatFormField,
-    MatIcon,
-    MatInput,
-    MatPrefix,
-    ReactiveFormsModule,
-    IconButtonComponent,
-    MatSuffix,
-  ],
-  template: `
+    selector: 'app-header',
+    imports: [
+        MatFormField,
+        MatIcon,
+        MatInput,
+        MatPrefix,
+        ReactiveFormsModule,
+        IconButtonComponent,
+        MatSuffix,
+    ],
+    template: `
     <header class="text-2xl w-full flex justify-between items-end px-4">
       <h1>People</h1>
       <mat-form-field class="mt-4 !text-sm flex items-center justify-center">
@@ -45,7 +44,7 @@ import { IconButtonComponent } from '../../../../../shared/components/icon-butto
       </mat-form-field>
     </header>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeaderComponent {
   control = new FormControl<string>('');

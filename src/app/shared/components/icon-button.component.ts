@@ -9,10 +9,9 @@ import { MatIconButton } from '@angular/material/button';
 import { MatTooltip } from '@angular/material/tooltip';
 
 @Component({
-  selector: 'app-icon-button',
-  standalone: true,
-  imports: [MatIcon, MatIconButton, MatTooltip],
-  template: `
+    selector: 'app-icon-button',
+    imports: [MatIcon, MatIconButton, MatTooltip],
+    template: `
     <button
       mat-icon-button
       [matTooltip]="tooltip()"
@@ -22,7 +21,7 @@ import { MatTooltip } from '@angular/material/tooltip';
       <mat-icon>{{ icon() }}</mat-icon>
     </button>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class IconButtonComponent {
   icon = input.required<string>();

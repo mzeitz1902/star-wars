@@ -4,10 +4,9 @@ import { MatOption, MatSelect } from '@angular/material/select';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-select-field',
-  standalone: true,
-  imports: [MatFormField, MatSelect, ReactiveFormsModule, MatOption, MatLabel],
-  template: `
+    selector: 'app-select-field',
+    imports: [MatFormField, MatSelect, ReactiveFormsModule, MatOption, MatLabel],
+    template: `
     <mat-form-field class="w-full">
       <mat-label>{{ label() }}</mat-label>
       <mat-select [formControl]="control()">
@@ -17,7 +16,7 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
       </mat-select>
     </mat-form-field>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SelectFieldComponent<T> {
   control = input.required<FormControl<T>>();

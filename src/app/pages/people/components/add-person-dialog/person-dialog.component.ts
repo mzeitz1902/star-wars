@@ -11,25 +11,24 @@ import { InputFieldComponent } from '../../../../shared/components/input-field.c
 import { SelectFieldComponent } from '../../../../shared/components/select-field.component';
 
 @Component({
-  selector: 'app-add-person-dialog',
-  standalone: true,
-  imports: [
-    MatDialogTitle,
-    MatDialogContent,
-    ReactiveFormsModule,
-    MatFormField,
-    MatLabel,
-    MatError,
-    ReadableErrorPipe,
-    MatInput,
-    DialogActionsComponent,
-    MatSelect,
-    MatOption,
-    InputFieldComponent,
-    SelectFieldComponent,
-  ],
-  providers: [PersonFormService],
-  template: `
+    selector: 'app-add-person-dialog',
+    imports: [
+        MatDialogTitle,
+        MatDialogContent,
+        ReactiveFormsModule,
+        MatFormField,
+        MatLabel,
+        MatError,
+        ReadableErrorPipe,
+        MatInput,
+        DialogActionsComponent,
+        MatSelect,
+        MatOption,
+        InputFieldComponent,
+        SelectFieldComponent,
+    ],
+    providers: [PersonFormService],
+    template: `
     <div class="flex flex-col gap-3">
       <h1 matDialogTitle class="primary">Add Person</h1>
       <mat-dialog-content class="!pt-2">
@@ -47,7 +46,7 @@ import { SelectFieldComponent } from '../../../../shared/components/select-field
       <app-dialog-actions [isDisabled]="form.invalid" [value]="form.value" />
     </div>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PersonDialogComponent {
   formService = inject(PersonFormService);

@@ -7,15 +7,14 @@ import {
 import { MatButton } from '@angular/material/button';
 
 @Component({
-  selector: 'app-button',
-  standalone: true,
-  imports: [MatButton],
-  template: `
+    selector: 'app-button',
+    imports: [MatButton],
+    template: `
     <button mat-raised-button [class]="styleClass()" (click)="onClick.emit()">
       {{ text() }}
     </button>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RaisedButtonComponent {
   text = input.required<string>();

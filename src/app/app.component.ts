@@ -2,10 +2,9 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet],
-  template: `
+    selector: 'app-root',
+    imports: [RouterOutlet],
+    template: `
     <div
       class="mat-app-background h-dvh w-dvw p-8 flex items-center justify-center overflow-hidden"
     >
@@ -13,6 +12,6 @@ import { RouterOutlet } from '@angular/router';
         <router-outlet />
       </div>
     </div>
-  `,
+  `
 })
 export class AppComponent {}

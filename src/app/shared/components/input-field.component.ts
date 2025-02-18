@@ -16,18 +16,17 @@ import { MatInput } from '@angular/material/input';
 import { Field } from '../../pages/people/components/add-person-dialog/person-form.service';
 
 @Component({
-  selector: 'app-input-field',
-  standalone: true,
-  imports: [
-    MatFormField,
-    MatError,
-    ReadableErrorPipe,
-    MatLabel,
-    MatInput,
-    MatHint,
-    ReactiveFormsModule,
-  ],
-  template: `
+    selector: 'app-input-field',
+    imports: [
+        MatFormField,
+        MatError,
+        ReadableErrorPipe,
+        MatLabel,
+        MatInput,
+        MatHint,
+        ReactiveFormsModule,
+    ],
+    template: `
     <mat-form-field class="w-full" [class.mb-2]="!!field().hint">
       <mat-label>{{ field().label }}</mat-label>
       <input
@@ -44,7 +43,7 @@ import { Field } from '../../pages/people/components/add-person-dialog/person-fo
       <mat-error>{{ error() | readableError }}</mat-error>
     }
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class InputFieldComponent {
   field = input.required<Field>();

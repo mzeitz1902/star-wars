@@ -27,25 +27,24 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { IconButtonComponent } from '../../../../shared/components/icon-button.component';
 
 @Component({
-  selector: 'app-people-details',
-  standalone: true,
-  imports: [
-    MatCard,
-    MatCardTitle,
-    MatCardHeader,
-    MatCardContent,
-    MatList,
-    MatListItem,
-    IconButtonComponent,
-  ],
-  animations: [
-    trigger('slideInOut', [
-      state('in', style({ transform: 'translateX(0)' })),
-      state('out', style({ transform: 'translateX(100%)' })),
-      transition('out => in', animate('300ms ease-in')),
-    ]),
-  ],
-  template: `
+    selector: 'app-people-details',
+    imports: [
+        MatCard,
+        MatCardTitle,
+        MatCardHeader,
+        MatCardContent,
+        MatList,
+        MatListItem,
+        IconButtonComponent,
+    ],
+    animations: [
+        trigger('slideInOut', [
+            state('in', style({ transform: 'translateX(0)' })),
+            state('out', style({ transform: 'translateX(100%)' })),
+            transition('out => in', animate('300ms ease-in')),
+        ]),
+    ],
+    template: `
     <div
       class="w-full h-full"
       [@slideInOut]="slideState() === 'in' ? 'in' : 'out'"
@@ -82,7 +81,7 @@ import { IconButtonComponent } from '../../../../shared/components/icon-button.c
       }
     </div>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PersonDetailsComponent {
   private readonly destroyRef = inject(DestroyRef);

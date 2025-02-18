@@ -14,20 +14,19 @@ import { Person } from '../../../../person.interface';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 
 @Component({
-  selector: 'app-people-list',
-  standalone: true,
-  imports: [
-    MatChip,
-    MatChipSet,
-    MatChipListbox,
-    MatChipOption,
-    MatIcon,
-    MatChipRow,
-    MatChipRemove,
-    MatButton,
-    MatPaginator,
-  ],
-  template: `
+    selector: 'app-people-list',
+    imports: [
+        MatChip,
+        MatChipSet,
+        MatChipListbox,
+        MatChipOption,
+        MatIcon,
+        MatChipRow,
+        MatChipRemove,
+        MatButton,
+        MatPaginator,
+    ],
+    template: `
     <div class="flex flex-col items-start w-full h-full">
       <mat-chip-set class="mat-mdc-chip-set-stacked !w-full !h-full">
         @for (person of people(); track person.id) {
@@ -49,7 +48,7 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
       />
     </div>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PeopleListComponent {
   viewService = inject(PeopleViewService);

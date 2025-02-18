@@ -13,22 +13,21 @@ import { MatPaginator } from '@angular/material/paginator';
 import { PeopleViewService } from '../people-view.service';
 
 @Component({
-  selector: 'app-content',
-  standalone: true,
-  imports: [
-    PeopleListComponent,
-    RouterOutlet,
-    RaisedButtonComponent,
-    MatPaginator,
-  ],
-  animations: [
-    trigger('widthAnimation', [
-      state('true', style({ width: '50%' })),
-      state('false', style({ width: '100%' })),
-      transition('true <=> false', animate('1000ms ease-in-out')),
-    ]),
-  ],
-  template: `
+    selector: 'app-content',
+    imports: [
+        PeopleListComponent,
+        RouterOutlet,
+        RaisedButtonComponent,
+        MatPaginator,
+    ],
+    animations: [
+        trigger('widthAnimation', [
+            state('true', style({ width: '50%' })),
+            state('false', style({ width: '100%' })),
+            transition('true <=> false', animate('1000ms ease-in-out')),
+        ]),
+    ],
+    template: `
     @if (!isLoading()) {
       <div class="flex flex-col items-center w-full">
         <div class="flex gap-3 p-3 w-full h-full">
@@ -47,7 +46,7 @@ import { PeopleViewService } from '../people-view.service';
       </div>
     }
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ContentComponent {
   viewService = inject(PeopleViewService);
